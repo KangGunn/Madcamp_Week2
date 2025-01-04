@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".SearchActivity">
+
+    <!-- 필터링 버튼 그룹 -->
+    <LinearLayout
+        android:id="@+id/filter_buttons_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 필터 버튼 1: 개설학과 -->
+        <Button
+            android:id="@+id/filter1"
+            android:layout_width="2dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:text="개설학과"
+            android:textSize="7sp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
+            android:padding="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"/>
+
+        <!-- 필터 버튼 2 -->
+        <Button
+            android:id="@+id/filter2"
+            android:layout_width="2dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:text="과정구분"
+            android:textSize="7sp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
+            android:padding="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"/>
+
+        <!-- 필터 버튼 3 -->
+        <Button
+            android:id="@+id/filter3"
+            android:layout_width="2dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:text="과목구분"
+            android:textSize="7sp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
+            android:padding="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"/>
+
+        <!-- 필터 버튼 4 -->
+        <Button
+            android:id="@+id/filter4"
+            android:layout_width="2dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:text="교과목명"
+            android:textSize="7sp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
+            android:padding="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"/>
+
+        <!-- 필터 버튼 5 -->
+        <Button
+            android:id="@+id/filter5"
+            android:layout_width="2dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:text="교과목코드"
+            android:textSize="7sp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
+            android:padding="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"/>
+
+        <!-- 필터 버튼 6 -->
+        <Button
+            android:id="@+id/filter6"
+            android:layout_width="2dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:text="담당교수"
+            android:textSize="7sp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
+            android:padding="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"/>
+
+        <Button
+            android:id="@+id/filter7"
+            android:layout_width="2dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:text="선택 필터"
+            android:textSize="7sp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
+            android:padding="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"/>
+    </LinearLayout>
+
+    <!-- RecyclerView: 스크롤 가능한 카드 리스트 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/course_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filter_buttons_layout"
+        app:layout_constraintVertical_bias="1.0"
+        tools:listitem="@layout/item_course_card" />
+</androidx.constraintlayout.widget.ConstraintLayout>

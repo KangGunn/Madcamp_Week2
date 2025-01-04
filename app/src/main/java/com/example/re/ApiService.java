@@ -6,9 +6,9 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
-    @GET("myapp/api/hello/")
-    Call<HelloResponse> getHello();
+    @POST("accounts/register/")
+    Call<Void> register(@Body User user);  // 회원가입 API
 
-    @POST("myapp/api/hello/")
-    Call<PostResponse> postHello(@Body PostRequest request);
+    @POST("/api/login")
+    Call<Void> login(@Body LoginRequest loginRequest);  // 로그인 API
 }

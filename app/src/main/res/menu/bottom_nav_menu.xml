@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_timetable"
+        android:icon="@drawable/character"
+        android:title="Home" />
+    <item
+        android:id="@+id/navigation_rating"
+        android:icon="@drawable/character"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/character"
+        android:title="Notifications" />
+</menu>
