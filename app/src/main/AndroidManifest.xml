@@ -28,21 +28,19 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true">
+
+        </activity>
+
+        <!-- TimeActivity 설정 -->
+        <activity
+            android:name=".TimetableActivity"
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- Google Sign-In을 위한 SignInHubActivity -->
-        <activity
-            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:exported="true"
-            tools:replace="android:exported" />
-
-<!--        &lt;!&ndash; TimetableActivity &ndash;&gt;-->
-<!--        <activity android:name=".TimetableActivity" android:exported="true" />-->
 
         <!-- RegisterActivity -->
         <activity android:name=".RegisterActivity" android:exported="true" />
