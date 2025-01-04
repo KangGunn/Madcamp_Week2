@@ -13,8 +13,6 @@ public interface ApiService {
 
     @POST("/api/login")
     Call<Void> login(@Body LoginRequest loginRequest);  // 로그인 API
-    @POST("myapp/api/hello/")
-    Call<PostResponse> postHello(@Body PostRequest request);
 
     @POST("myapp/api/filter/")
     Call<List<CourseResponse>> getFilteredCourses(@Body CourseRequest request);
