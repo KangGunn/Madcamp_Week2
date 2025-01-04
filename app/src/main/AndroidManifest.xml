@@ -33,7 +33,7 @@
 
         <!-- TimeActivity 설정 -->
         <activity
-            android:name=".TimetableActivity"
+            android:name=".SearchActivity"
             android:exported="true" >
 
             <intent-filter>

@@ -26,7 +26,7 @@
 
             <!-- 좌측 상단에 과목명을 표시하는 TextView -->
             <TextView
-                android:id="@+id/course_subject"
+                android:id="@+id/card_course_name_and_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이산수학(CS:2004)"
@@ -49,15 +49,23 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/item_left_1"
+                        android:id="@+id/card_department"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="강의시간"
+                        android:text="개설학과"
                         android:textSize="12sp"
                         android:layout_marginBottom="8dp" />
 
                     <TextView
-                        android:id="@+id/item_left_2"
+                        android:id="@+id/card_course_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="과정구분"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/card_lpc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="강:실:학"
@@ -65,18 +73,10 @@
                         android:layout_marginBottom="8dp" />
 
                     <TextView
-                        android:id="@+id/item_left_3"
+                        android:id="@+id/card_lecture_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="과정"
-                        android:textSize="12sp"
-                        android:layout_marginBottom="8dp" />
-
-                    <TextView
-                        android:id="@+id/item_left_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="과목"
+                        android:text="강의시간"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -88,34 +88,34 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/item_right_1"
+                        android:id="@+id/card_section_and_professor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="담당교수/분반"
+                        android:text="분반/담당교수"
                         android:textSize="12sp"
                         android:layout_marginBottom="8dp" />
 
                     <TextView
-                        android:id="@+id/item_right_2"
+                        android:id="@+id/card_subject_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="개설학과"
+                        android:text="과목구분"
                         android:textSize="12sp"
                         android:layout_marginBottom="8dp" />
 
                     <TextView
-                        android:id="@+id/item_right_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="강의실"
-                        android:textSize="12sp"
-                        android:layout_marginBottom="8dp" />
-
-                    <TextView
-                        android:id="@+id/item_right_4"
+                        android:id="@+id/card_capacity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="정원"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/card_lecture_room"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="강의실"
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
