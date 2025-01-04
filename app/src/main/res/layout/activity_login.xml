@@ -8,28 +8,24 @@
     android:background="@color/white"
     tools:context=".LoginActivity">
 
-    <!-- 상단 툴바 -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="56dp"
         android:background="@color/blue"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- 로고 이미지 -->
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="51dp"
-        android:layout_height="42dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="178dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="11dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/character" />
+        <!-- 로고 이미지 -->
+        <ImageView
+            android:id="@+id/toolbar_logo"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/character"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name" />
+    </androidx.appcompat.widget.Toolbar>
 
     <!-- Username Input Field -->
     <EditText
@@ -41,7 +37,7 @@
         android:padding="12dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.8"
