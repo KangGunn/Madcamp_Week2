@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="251dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
@@ -32,30 +32,30 @@
                 android:id="@+id/department_filter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:hint="개설학과: 전체"
                 android:inputType="text"
-                android:textColorHint="@color/black"
-                android:layout_marginBottom="8dp" />
+                android:textColorHint="@color/black" />
 
             <!-- 교과목명 -->
             <EditText
                 android:id="@+id/course_name_filter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:hint="교과목명: 전체"
                 android:inputType="text"
-                android:textColorHint="@color/black"
-                android:layout_marginBottom="8dp" />
+                android:textColorHint="@color/black" />
 
             <!-- 담당교수 -->
             <EditText
                 android:id="@+id/professor_filter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:hint="담당교수: 전체"
                 android:inputType="text"
-                android:textColorHint="@color/black"
-                android:layout_marginBottom="8dp" />
+                android:textColorHint="@color/black" />
 
             <!-- 과정구분 -->
             <Spinner
@@ -83,11 +83,11 @@
                 android:id="@+id/apply_filter_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="검색"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="@color/blue"
+                android:text="검색"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

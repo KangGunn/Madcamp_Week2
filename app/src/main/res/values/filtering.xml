@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="department_options">
+        <item>전체</item>
+        <item>물리학과</item>
+        <item>화학과</item>
+        <item>전산학부</item>
+    </string-array>
+    <string-array name="course_type_options">
+        <item>전체</item>
+        <item>학사과정</item>
+        <item>석사과정</item>
+    </string-array>
+    <string-array name="subject_type_options">
+        <item>전체</item>
+        <item>전공필수</item>
+        <item>전공선택</item>
+    </string-array>
+</resources>

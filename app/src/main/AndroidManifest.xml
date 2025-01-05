@@ -28,10 +28,9 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-
         </activity>
 
-        <!-- TimeActivity 설정 -->
+        <!-- SearchActivity 설정 -->
         <activity
             android:name=".SearchActivity"
             android:exported="true" >
@@ -43,7 +42,17 @@
         </activity>
 
         <!-- RegisterActivity -->
-        <activity android:name=".RegisterActivity" android:exported="true" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
 
+        <!-- TimetableActivity 추가 -->
+        <activity
+            android:name=".TimetableActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".FilteringActivity"
+            android:exported="true" />
     </application>
 </manifest>
