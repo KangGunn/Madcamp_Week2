@@ -7,12 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".TimetableActivity">
 
+    <!-- 상단 버튼 -->
+    <Button
+        android:id="@+id/add_event_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="최적의 시간표 만들기"
+        android:textSize="10dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <!-- RecyclerView for the timetable -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/timetable_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:padding="8dp"
+        android:background="@drawable/table_boarder"
         android:clipToPadding="false"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/add_event_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
