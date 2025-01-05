@@ -74,8 +74,14 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         registerButton.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
+            String enteredId = idField.getText().toString().trim();
+            String enteredPassword = passwordField.getText().toString().trim();
+
+            if (enteredId.isEmpty() || enteredPassword.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "ID와 비밀번호를 모두 입력하세요.", Toast.LENGTH_SHORT).show();
+            } else {
+                registerUser(enteredId, enteredPassword);
+            }
         });
     }
 
@@ -98,6 +104,31 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "서버와 연결할 수 없습니다.", Toast.LENGTH_SHORT).show();
                 Log.e("Login", "Error: " + t.getMessage());
+            }
+        });
+    }
+
+    private void registerUser(String username, String password) {
+        RegisterRequest registerRequest = new RegisterRequest(username, password);
+        apiService.register(registerRequest).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "회원가입 성공!", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (response.code() == 400) {
+                        Toast.makeText(LoginActivity.this, "회원가입 실패: 필수 입력값이 없습니다.", Toast.LENGTH_SHORT).show();
+                    } else if (response.code() == 409) {
+                        Toast.makeText(LoginActivity.this, "회원가입 실패: 이미 존재하는 사용자입니다.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "회원가입 실패: 오류 코드 " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "서버와 연결할 수 없습니다.", Toast.LENGTH_SHORT).show();
             }
         });
     }
