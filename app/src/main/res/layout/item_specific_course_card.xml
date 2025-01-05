@@ -1,5 +1,4 @@
-item_specific_course_card.xml
-    <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,10 +10,10 @@ item_specific_course_card.xml
 
     <!-- 제목 영역 -->
     <TextView
-        android:id="@+id/course_title"
+        android:id="@+id/popup_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="이산수학 (CSL2004)"
+        android:text="이산수학 (CS.20004)"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -30,7 +29,7 @@ item_specific_course_card.xml
         app:cardCornerRadius="8dp"
         app:cardElevation="2dp"
         app:backgroundTint="@color/light_gray"
-        app:layout_constraintTop_toBottomOf="@id/course_title"
+        app:layout_constraintTop_toBottomOf="@id/popup_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp">
@@ -42,23 +41,7 @@ item_specific_course_card.xml
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/course_plan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="강의계획서"
-                android:textSize="13sp"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/course_capacity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="수강인원"
-                android:textSize="13sp"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/course_type"
+                android:id="@+id/card_evaluation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="평가유형"
@@ -66,23 +49,7 @@ item_specific_course_card.xml
                 android:layout_marginBottom="8dp" />
 
             <TextView
-                android:id="@+id/course_prerequisite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="[기초과목] 공유과목"
-                android:textSize="13sp"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/course_edu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edu 4.0Q"
-                android:textSize="13sp"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/course_lecturetype"
+                android:id="@+id/card_lecture_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="강의유형"
@@ -90,23 +57,7 @@ item_specific_course_card.xml
                 android:layout_marginBottom="8dp" />
 
             <TextView
-                android:id="@+id/course_accepted"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="상호인정"
-                android:textSize="13sp"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/course_subcode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="부제코드"
-                android:textSize="13sp"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/course_english"
+                android:id="@+id/card_english"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="영어"
@@ -114,7 +65,7 @@ item_specific_course_card.xml
                 android:layout_marginBottom="8dp" />
 
             <TextView
-                android:id="@+id/course_au"
+                android:id="@+id/card_au"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AU"
@@ -122,7 +73,47 @@ item_specific_course_card.xml
                 android:layout_marginBottom="8dp" />
 
             <TextView
-                android:id="@+id/course_substitute"
+                android:id="@+id/card_edu4q"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edu 4.0Q"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/card_syllabus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="강의계획서"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/card_enrolled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수강인원"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/card_mutual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="상호인정"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/card_shared_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[기준과목] 공유과목"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/card_alternative_retake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="대체과목(재수강)"
@@ -130,15 +121,31 @@ item_specific_course_card.xml
                 android:layout_marginBottom="8dp" />
 
             <TextView
-                android:id="@+id/course_pastcode"
+                android:id="@+id/card_sub_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="과거 과목코드/전산코드"
+                android:text="부제코드"
                 android:textSize="13sp"
                 android:layout_marginBottom="8dp" />
 
             <TextView
-                android:id="@+id/course_info"
+                android:id="@+id/card_prev_course_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="과거 과목코드"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/card_prev_com_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="과거 전산코드"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/card_additional"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="부가정보"
@@ -146,7 +153,7 @@ item_specific_course_card.xml
                 android:layout_marginBottom="8dp" />
 
             <TextView
-                android:id="@+id/course_remark"
+                android:id="@+id/card_remarks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="비고"
