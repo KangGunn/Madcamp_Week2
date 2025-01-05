@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <!-- 필터 영역을 포함하는 CardView -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/light_gray"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 개설학과 -->
+            <EditText
+                android:id="@+id/department_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="개설학과: 전체"
+                android:inputType="text"
+                android:textColorHint="@color/black"
+                android:layout_marginBottom="8dp" />
+
+            <!-- 교과목명 -->
+            <EditText
+                android:id="@+id/course_name_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="교과목명: 전체"
+                android:inputType="text"
+                android:textColorHint="@color/black"
+                android:layout_marginBottom="8dp" />
+
+            <!-- 담당교수 -->
+            <EditText
+                android:id="@+id/professor_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="담당교수: 전체"
+                android:inputType="text"
+                android:textColorHint="@color/black"
+                android:layout_marginBottom="8dp" />
+
+            <!-- 과정구분 -->
+            <Spinner
+                android:id="@+id/course_type_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <!-- 과목구분 -->
+            <Spinner
+                android:id="@+id/subject_type_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <!-- 강의유형 -->
+            <Spinner
+                android:id="@+id/lecture_type_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <!-- 검색 버튼 -->
+            <Button
+                android:id="@+id/apply_filter_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="검색"
+                android:backgroundTint="@color/blue"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

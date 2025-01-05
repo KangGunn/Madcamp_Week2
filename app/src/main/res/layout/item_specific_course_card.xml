@@ -1,6 +1,157 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+item_specific_course_card.xml
+    <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@color/light_gray"
+    android:layout_margin="16dp">
 
+    <!-- 제목 영역 -->
+    <TextView
+        android:id="@+id/course_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이산수학 (CSL2004)"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 세부 정보 박스 -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:backgroundTint="@color/light_gray"
+        app:layout_constraintTop_toBottomOf="@id/course_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/course_plan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="강의계획서"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_capacity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수강인원"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="평가유형"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_prerequisite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[기초과목] 공유과목"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_edu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edu 4.0Q"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_lecturetype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="강의유형"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_accepted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="상호인정"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_subcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="부제코드"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_english"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="영어"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_au"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AU"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_substitute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="대체과목(재수강)"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_pastcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="과거 과목코드/전산코드"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="부가정보"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/course_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비고"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
