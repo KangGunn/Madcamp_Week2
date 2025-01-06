@@ -133,8 +133,8 @@ public class PreferencesActivity extends AppCompatActivity {
         chip.setCloseIconVisible(true);
         chip.setClickable(true);
         chip.setCheckable(false);
-        chip.setChipBackgroundColorResource(R.color.black);
-        chip.setCloseIconResource(R.drawable.character);
+        chip.setChipBackgroundColorResource(R.color.blue);
+        chip.setCloseIconResource(R.drawable.close);
         chip.setOnCloseIconClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,8 +192,8 @@ public class PreferencesActivity extends AppCompatActivity {
         chip.setCloseIconVisible(true);
         chip.setClickable(true);
         chip.setCheckable(false);
-        chip.setChipBackgroundColorResource(R.color.black);
-        chip.setCloseIconResource(R.drawable.character);
+        chip.setChipBackgroundColorResource(R.color.blue);
+        chip.setCloseIconResource(R.drawable.close);
         chip.setOnCloseIconClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
