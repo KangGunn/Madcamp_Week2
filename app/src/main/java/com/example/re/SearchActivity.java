@@ -18,14 +18,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchActivity extends AppCompatActivity {
-
+public class SearchActivity extends BaseActivity {
+    private RecyclerView recyclerView;
+    private CourseAdapter adapter;
     public SearchActivity() {
         //
     }
-
-    private RecyclerView recyclerView;
-    private CourseAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +88,9 @@ public class SearchActivity extends AppCompatActivity {
                 Log.e("API Error", "API call failed: " + t.getMessage());
             }
         });
-
+    }
+    @Override
+    protected int getSelectedMenuId() {
+        return R.id.navigation_search;
     }
 }

@@ -21,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PreferencesActivity extends AppCompatActivity {
+public class PreferencesActivity extends BaseActivity {
 
     private ChipGroup chipGroupDislikedTime;
     private ChipGroup chipGroupMandatoryCourses;
@@ -42,11 +42,15 @@ public class PreferencesActivity extends AppCompatActivity {
 
     // Retrofit API 서비스
     private ApiService apiService;
+    @Override
+    protected int getSelectedMenuId() {
+        return R.id.navigation_preferences; // 네비게이션 메뉴에서 Preferences에 해당하는 ID를 반환
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preferences);
+        getLayoutInflater().inflate(R.layout.activity_preferences, findViewById(R.id.content_frame), true);
 
         // 초기화
         chipGroupDislikedTime = findViewById(R.id.chipGroup_disliked_time);
@@ -136,6 +140,7 @@ public class PreferencesActivity extends AppCompatActivity {
         chip.setChipBackgroundColorResource(R.color.black);
         chip.setCloseIconResource(R.drawable.character);
         chip.setOnCloseIconClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 chipGroup.removeView(chip);

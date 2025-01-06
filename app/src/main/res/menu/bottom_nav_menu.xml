@@ -3,13 +3,13 @@
     <item
         android:id="@+id/navigation_timetable"
         android:icon="@drawable/character"
-        android:title="Home" />
+        android:title="Timetable" />
     <item
-        android:id="@+id/navigation_rating"
+        android:id="@+id/navigation_preferences"
         android:icon="@drawable/character"
-        android:title="Dashboard" />
+        android:title="Preferences" />
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_search"
         android:icon="@drawable/character"
-        android:title="Notifications" />
+        android:title="Search" />
 </menu>

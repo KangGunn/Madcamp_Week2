@@ -46,6 +46,10 @@
         <activity
             android:name=".TimetableActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -54,11 +58,11 @@
 
         <activity
             android:name=".PreferencesActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"/>
+
+            <activity
+                android:name=".MainActivity"
+                android:exported="true">
+            </activity>
     </application>
 </manifest>

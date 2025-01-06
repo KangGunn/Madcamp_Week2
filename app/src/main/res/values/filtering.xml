@@ -9,7 +9,7 @@
     <string-array name="course_type_options">
         <item>전체</item>
         <item>학사과정</item>
-        <item>석사과정</item>
+        <item>석/박사과정</item>
     </string-array>
     <string-array name="subject_type_options">
         <item>전체</item>
