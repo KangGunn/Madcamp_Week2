@@ -2,9 +2,10 @@
 <resources>
     <string-array name="department_options">
         <item>전체</item>
-        <item>물리학과</item>
-        <item>화학과</item>
-        <item>전산학부</item>
+        <item>대면</item>
+        <item>(온라인)비실시간+실시간 혼합 수업</item>
+        <item>(온라인)실시간 원격수업</item>
+        <item>(온라인)비실시간 원격수업</item>
     </string-array>
     <string-array name="course_type_options">
         <item>전체</item>
@@ -13,7 +14,27 @@
     </string-array>
     <string-array name="subject_type_options">
         <item>전체</item>
-        <item>전공필수</item>
         <item>전공선택</item>
+        <item>기초필수</item>
+        <item>졸업연구</item>
+        <item>전공필수</item>
+        <item>논문연구</item>
+        <item>개별연구</item>
+        <item>선택(석/박사)</item>
+        <item>세미나</item>
+        <item>기초선택</item>
+        <item>현장실습및연구</item>
+        <item>공통필수</item>
+        <item>교양필수</item>
+        <item>자유선택</item>
+        <item>논문세미나</item>
+        <item>인문사회선택(문학예술-일반)</item>
+        <item>인문사회선택(문학예술-핵심)</item>
+        <item>인문사회선택(문학예술-융합)</item>
+        <item>인문사회선택(사회-일반)</item>
+        <item>인문사회선택(사회-융합)</item>
+        <item>인문사회선택(사회-핵심)</item>
+        <item>인문사회선택(인문-일반)</item>
+        <item>인문사회선택(인문-핵심)</item>
     </string-array>
 </resources>
