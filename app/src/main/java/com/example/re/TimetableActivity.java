@@ -4,26 +4,31 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TimetableActivity extends AppCompatActivity {
+public class TimetableActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private TimetableAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timetable);
+    protected int getLayoutResId() {
+        // activity_timetable.xml을 content_frame에 로드
+        return R.layout.activity_timetable;
+    }
 
+    @Override
+    protected void setupViews() {
+        // RecyclerView 설정
         recyclerView = findViewById(R.id.timetable_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // 데이터 생성
+        // 데이터 생성 및 Adapter 설정
         List<TimetableRow> timetableData = createTimetableData();
-
-        // Adapter 설정
         adapter = new TimetableAdapter(timetableData);
         recyclerView.setAdapter(adapter);
     }
