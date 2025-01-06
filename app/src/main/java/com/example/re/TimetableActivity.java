@@ -4,7 +4,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +26,13 @@ public class TimetableActivity extends AppCompatActivity {
         // Adapter 설정
         adapter = new TimetableAdapter(timetableData);
         recyclerView.setAdapter(adapter);
+
+        Button floatingActionButton = findViewById(R.id.add_event_button);
+        floatingActionButton.setOnClickListener(v -> {
+            BottomSheetFragment bottomSheet = new BottomSheetFragment();
+            bottomSheet.show(getSupportFragmentManager(), "BottomSheetFragment");
+        });
+
     }
 
     private List<TimetableRow> createTimetableData() {
