@@ -14,6 +14,9 @@ public interface ApiService {
     @POST("userdb/api/login/")
     Call<Void> login(@Body LoginRequest loginRequest);  // 로그인 API
 
+    @POST("userdb/api/google-login/")
+    Call<Void> googleLogin(@Body GoogleLoginRequest googleLoginRequest);
+
     @POST("myapp/api/filter/")
     Call<List<CourseResponse>> getFilteredCourses(@Body CourseRequest request);
 }

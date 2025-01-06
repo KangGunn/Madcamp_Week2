@@ -16,6 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
 import retrofit2.Call;
@@ -31,11 +32,18 @@ public class LoginActivity extends AppCompatActivity {
             registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
                     result -> {
+                        Log.d("GoogleSignIn", "Result Code: " + result.getResultCode());
                         if (result.getResultCode() == RESULT_OK) {
                             Intent data = result.getData();
-                            handleSignInResult(GoogleSignIn.getSignedInAccountFromIntent(data));
+                            if (data != null) {
+                                handleSignInResult(GoogleSignIn.getSignedInAccountFromIntent(data));
+                            } else {
+                                Log.e("GoogleSignIn", "Intent data is null");
+                                Toast.makeText(this, "Google Sign-In 실패1: 데이터 없음", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(this, "Google Sign-In 실패", Toast.LENGTH_SHORT).show();
+                            Log.e("GoogleSignIn", "Sign-In failed with result code: " + result.getResultCode());
+                            Toast.makeText(this, "Google Sign-In 실패1", Toast.LENGTH_SHORT).show();
                         }
                     }
             );
@@ -92,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, TimetableActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
@@ -140,17 +148,41 @@ public class LoginActivity extends AppCompatActivity {
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
-            GoogleSignInAccount account = completedTask.getResult(Exception.class);
-            String email = account.getEmail();
-            String displayName = account.getDisplayName();
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            String idToken = account.getIdToken();
+            Log.d("Google ID Token", idToken);
 
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            intent.putExtra("google_email", email);
-            intent.putExtra("google_name", displayName);
-            startActivity(intent);
-        } catch (Exception e) {
+            if (idToken != null) {
+                sendGoogleTokenToServer(idToken);
+            } else {
+                Toast.makeText(this, "Google ID Token을 가져올 수 없습니다.", Toast.LENGTH_LONG).show();
+            }
+        } catch (ApiException e) {
             Log.e("Google Sign-In", "Sign-In failed", e);
-            Toast.makeText(this, "Google Sign-In 실패", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Google Sign-In 실패2", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void sendGoogleTokenToServer(String idToken) {
+        GoogleLoginRequest googleLoginRequest = new GoogleLoginRequest(idToken);
+        apiService.googleLogin(googleLoginRequest).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Google 로그인 성공!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Google 로그인 실패: 서버에서 인증 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "서버와 연결할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                Log.e("Google Login", "Error: " + t.getMessage());
+            }
+        });
     }
 }

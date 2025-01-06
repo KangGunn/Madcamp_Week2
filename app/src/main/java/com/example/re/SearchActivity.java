@@ -57,7 +57,7 @@ public class SearchActivity extends AppCompatActivity {
         // 현재 CourseRequest 생성 방식 유지
         CourseRequest request = new CourseRequest(
                 "전산학부",
-                "학사과정",
+                "",
                 "전공필수",
                 "",
                 "",
