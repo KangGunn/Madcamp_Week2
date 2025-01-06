@@ -297,12 +297,12 @@ public class PreferencesActivity extends AppCompatActivity {
         }
 
         // 데이터 출력 (디버깅 용도)
-        Log.d("Preferences", "기피 시간대: " + dislikedTimes.toString());
-        Log.d("Preferences", "필수 과목 (" + mandatoryCourses.size() + "개): " + mandatoryCourses.toString());
-        Log.d("Preferences", "기피 과목 (" + dislikedCourses.size() + "개): " + dislikedCourses.toString());
-        Log.d("Preferences", "희망 학점 범위: " + minCredits + " ~ " + maxCredits);
-        Log.d("Preferences", "전공 과목: " + majorCourses.toString());
-        Log.d("Preferences", "교양 과목 수: " + generalCourses);
+//        Log.d("Preferences", "기피 시간대: " + dislikedTimes.toString());
+//        Log.d("Preferences", "필수 과목 (" + mandatoryCourses.size() + "개): " + mandatoryCourses.toString());
+//        Log.d("Preferences", "기피 과목 (" + dislikedCourses.size() + "개): " + dislikedCourses.toString());
+//        Log.d("Preferences", "희망 학점 범위: " + minCredits + " ~ " + maxCredits);
+//        Log.d("Preferences", "전공 과목: " + majorCourses.toString());
+//        Log.d("Preferences", "교양 과목 수: " + generalCourses);
 
         // 서버로 데이터 전송
         PreferencesRequest preferencesRequest = new PreferencesRequest(

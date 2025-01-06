@@ -22,7 +22,7 @@
         <!-- Google Sign-In 클라이언트 ID -->
         <meta-data
             android:name="com.google.android.gms.client_id"
-            android:value="YOUR_CLIENT_ID.apps.googleusercontent.com" />
+            android:value="@string/default_web_client_id" />
 
         <!-- LoginActivity 설정 (앱의 첫 화면) -->
         <activity
@@ -34,10 +34,6 @@
         <activity
             android:name=".SearchActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!-- RegisterActivity -->
@@ -59,6 +55,10 @@
         <activity
             android:name=".PreferencesActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 </manifest>
