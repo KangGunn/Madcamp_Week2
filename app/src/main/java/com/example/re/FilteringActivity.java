@@ -2,6 +2,7 @@ package com.example.re;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -29,6 +30,11 @@ public class FilteringActivity extends AppCompatActivity {
         subjectTypeFilter = findViewById(R.id.subject_type_filter);
         lectureTypeFilter = findViewById(R.id.lecture_type_filter);
 
+        // Spinner에 데이터 설정
+        setupSpinner(courseTypeFilter, R.array.course_type_options);
+        setupSpinner(subjectTypeFilter, R.array.subject_type_options);
+        setupSpinner(lectureTypeFilter, R.array.department_options);
+
         // Button
        applyFilterButton = findViewById(R.id.apply_filter_button);
 
@@ -41,8 +47,19 @@ public class FilteringActivity extends AppCompatActivity {
             resultIntent.putExtra("course_type", courseTypeFilter.getSelectedItem().toString());
             resultIntent.putExtra("subject_type", subjectTypeFilter.getSelectedItem().toString());
             resultIntent.putExtra("lecture_type", lectureTypeFilter.getSelectedItem().toString());
+
             setResult(RESULT_OK, resultIntent); // 결과 반환
             finish(); // FilteringActivity 종료
         });
+    }
+    // Spinner에 데이터를 설정하는 메서드
+    private void setupSpinner(Spinner spinner, int arrayResource) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                arrayResource,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 }

@@ -1,9 +1,14 @@
 package com.example.re;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,12 +25,34 @@ import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
 
-    public SearchActivity() {
-        //
-    }
-
     private RecyclerView recyclerView;
     private CourseAdapter adapter;
+    private Button searchButton;
+    // ActivityResultLauncher 선언
+    private final ActivityResultLauncher<Intent> filteringActivityLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    // FilteringActivity에서 전달된 데이터 가져오기
+                    Intent data = result.getData();
+                    String department = data.getStringExtra("department");
+                    String courseName = data.getStringExtra("course_name");
+                    String professor = data.getStringExtra("professor");
+                    String courseType = data.getStringExtra("course_type");
+                    String subjectType = data.getStringExtra("subject_type");
+                    String lectureType = data.getStringExtra("lecture_type");
+
+                    System.out.println("SearchActivity received: " +
+                            department + ", " +
+                            courseName + ", " +
+                            professor + ", " +
+                            courseType + ", " +
+                            subjectType + ", " +
+                            lectureType);
+
+                    // CourseRequest 생성 및 서버 호출
+                    fetchCourses(department, courseName, professor, courseType, subjectType, lectureType);
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +71,21 @@ public class SearchActivity extends AppCompatActivity {
         adapter = new CourseAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
+        // 검색 버튼 설정
+        searchButton = findViewById(R.id.search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // FilteringActivity로 이동
+                Intent intent = new Intent(SearchActivity.this, FilteringActivity.class);
+                filteringActivityLauncher.launch(intent);
+            }
+        });
+
+        // 기본 데이터 가져오기
+        fetchCourses("", "", "", "", "", "");
+    }
         ApiService apiService = RetrofitClient.getApiService();
 
         // CourseRequest 생성 방법 개선 (선택 사항)
@@ -55,24 +97,35 @@ public class SearchActivity extends AppCompatActivity {
         // CourseRequest request = new CourseRequest(filters, displayColumns);
 
         // 현재 CourseRequest 생성 방식 유지
-        CourseRequest request = new CourseRequest(
-                "전산학부",
-                "",
-                "전공필수",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                null,
-                "",
-                "",
-                ""
-        );
+        private void fetchCourses(String department, String courseName, String professor,
+                                  String courseType, String subjectType, String lectureType) {
+            department = (department == null || department.isEmpty()) ? "" : department;
+            courseName = (courseName == null || courseName.isEmpty()) ? "" : courseName;
+            professor = (professor == null || professor.isEmpty()) ? "" : professor;
+            courseType = (courseType == null || courseType.equals("전체")) ? "" : courseType;
+            subjectType = (subjectType == null || subjectType.equals("전체")) ? "" : subjectType;
+            lectureType = (lectureType == null || lectureType.equals("전체")) ? "" : lectureType;
+            ApiService apiService = RetrofitClient.getApiService();
+
+            // CourseRequest 생성
+            CourseRequest request = new CourseRequest(
+                    department,
+                    courseType,
+                    subjectType,
+                    courseName,
+                    "",
+                    professor,
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    lectureType,
+                    "",
+                    ""
+            );
 
         apiService.getFilteredCourses(request).enqueue(new Callback<List<CourseResponse>>() {
             @Override
