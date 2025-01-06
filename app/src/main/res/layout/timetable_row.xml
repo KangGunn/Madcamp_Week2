@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="@color/white">
+
+    <!-- Time Column -->
+    <TextView
+        android:id="@+id/time_text"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="09:00-09:30"
+        android:background="@color/light_gray"
+        android:textStyle="bold" />
+
+    <!-- Monday Cell -->
+    <TextView
+        android:id="@+id/monday_cell"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@color/white" />
+
+    <!-- Tuesday Cell -->
+    <TextView
+        android:id="@+id/tuesday_cell"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@color/white" />
+
+    <!-- Wednesday Cell -->
+    <TextView
+        android:id="@+id/wednesday_cell"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@color/white" />
+
+    <!-- Thursday Cell -->
+    <TextView
+        android:id="@+id/thursday_cell"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@color/white" />
+
+    <!-- Friday Cell -->
+    <TextView
+        android:id="@+id/friday_cell"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@color/white" />
+</LinearLayout>

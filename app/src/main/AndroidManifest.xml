@@ -22,32 +22,36 @@
         <!-- Google Sign-In 클라이언트 ID -->
         <meta-data
             android:name="com.google.android.gms.client_id"
-            android:value="@string/default_web_client_id" />
+            android:value="YOUR_CLIENT_ID.apps.googleusercontent.com" />
 
         <!-- LoginActivity 설정 (앱의 첫 화면) -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-
         </activity>
 
-        <!-- TimeActivity 설정 -->
-        <activity
-            android:name=".TimetableActivity"
-            android:exported="true" >
-        </activity>
-
+        <!-- SearchActivity 설정 -->
         <activity
             android:name=".SearchActivity"
-            android:exported="true" >
+            android:exported="true" />
+
+        <!-- RegisterActivity -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+
+        <!-- TimetableActivity 추가 -->
+        <activity
+            android:name=".TimetableActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- RegisterActivity -->
-        <activity android:name=".RegisterActivity" android:exported="true" />
-
+        <activity
+            android:name=".FilteringActivity"
+            android:exported="true" />
     </application>
 </manifest>
