@@ -19,4 +19,7 @@ public interface ApiService {
 
     @POST("myapp/api/filter/")
     Call<List<CourseResponse>> getFilteredCourses(@Body CourseRequest request);
+
+    @POST("myapp/api/preferences/")
+    Call<PreferencesResponse> submitPreferences(@Body PreferencesRequest preferencesRequest);
 }

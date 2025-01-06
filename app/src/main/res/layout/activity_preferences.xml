@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".PreferencesActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 1. 기피 시간대 섹션 -->
+        <TextView
+            android:id="@+id/tv_disliked_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1. 기피 시간대 선택"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup_disliked_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:singleLine="false">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_time1"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9:00~10:30"
+                android:checkable="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_time2"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:30~12:00"
+                android:checkable="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_time3"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13:00~14:30"
+                android:checkable="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_time4"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14:30~16:00"
+                android:checkable="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_time5"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16:00~17:30"
+                android:checkable="true" />
+
+            <!-- 추가된 기피 시간대 -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_time6"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17:30~19:00"
+                android:checkable="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_time7"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19:00~20:30"
+                android:checkable="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_time8"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20:30~22:00"
+                android:checkable="true" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- 2. 필수 과목 섹션 -->
+        <TextView
+            android:id="@+id/tv_mandatory_courses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2. 필수 과목"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp">
+
+            <EditText
+                android:id="@+id/et_mandatory_course_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="과목명 또는 교과목코드 입력"
+                android:inputType="text" />
+
+            <ImageButton
+                android:id="@+id/btn_add_mandatory_course"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="과목 추가"
+                android:src="@drawable/character" />
+        </LinearLayout>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup_mandatory_courses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:orientation="horizontal" />
+
+        <!-- 3. 기피 과목 섹션 -->
+        <TextView
+            android:id="@+id/tv_disliked_courses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3. 기피 과목"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp">
+
+            <EditText
+                android:id="@+id/et_disliked_course_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="과목명 또는 교과목코드 입력"
+                android:inputType="text" />
+
+            <ImageButton
+                android:id="@+id/btn_add_disliked_course"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="과목 추가"
+                android:src="@drawable/character" />
+        </LinearLayout>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup_disliked_courses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:orientation="horizontal" />
+
+        <!-- 4. 희망 학점 범위 섹션 -->
+        <TextView
+            android:id="@+id/tv_credit_range"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4. 희망 학점 범위"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+
+            <EditText
+                android:id="@+id/et_min_credits"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="최소 학점"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/tv_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="~"
+                android:gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/et_max_credits"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="최대 학점"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <!-- 5. 전공 및 교양 과목 개수 섹션 -->
+        <TextView
+            android:id="@+id/tv_major_general_courses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5. 전공 과목 개수"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp">
+
+            <EditText
+                android:id="@+id/et_major_course_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="전공 학과명 입력"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/et_major_course_count"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="과목 수 입력"
+                android:inputType="number"
+                android:layout_marginStart="8dp" />
+
+            <ImageButton
+                android:id="@+id/btn_add_major_course"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="전공 과목 추가"
+                android:src="@drawable/character" />
+        </LinearLayout>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup_major_courses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:orientation="horizontal" />
+
+        <!-- 6. 교양 과목 개수 섹션 -->
+        <TextView
+            android:id="@+id/tv_general_courses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6. 교양 과목 개수"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/et_general_courses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="교양 과목 수"
+            android:inputType="number"
+            android:paddingBottom="16dp" />
+
+        <!-- 제출 버튼 -->
+        <Button
+            android:id="@+id/btn_submit_preferences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="제출"
+            android:backgroundTint="@color/black"
+            android:textColor="@android:color/white"
+            android:padding="12dp" />
+
+    </LinearLayout>
+</ScrollView>

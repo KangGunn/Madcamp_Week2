@@ -33,16 +33,6 @@
         <!-- SearchActivity 설정 -->
         <activity
             android:name=".SearchActivity"
-            android:exported="true" />
-
-        <!-- RegisterActivity -->
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="true" />
-
-        <!-- TimetableActivity 추가 -->
-        <activity
-            android:name=".TimetableActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,8 +40,25 @@
             </intent-filter>
         </activity>
 
+        <!-- RegisterActivity -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true">
+        </activity>
+
+        <!-- TimetableActivity 추가 -->
+        <activity
+            android:name=".TimetableActivity"
+            android:exported="true">
+        </activity>
+
         <activity
             android:name=".FilteringActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".PreferencesActivity"
+            android:exported="true">
+        </activity>
     </application>
 </manifest>
