@@ -1,10 +1,12 @@
 package com.example.re;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -21,15 +23,40 @@ import retrofit2.Response;
 public class SearchActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private CourseAdapter adapter;
-    public SearchActivity() {
-        //
-    }
+    private Button searchButton;
+    private final String TAG = "SearchActivity";
+
+    // 필터 데이터를 받는 ActivityResultLauncher 추가
+    private final ActivityResultLauncher<Intent> filteringActivityLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    // FilteringActivity에서 전달된 데이터 가져오기
+                    Intent data = result.getData();
+                    String department = data.getStringExtra("department");
+                    String courseName = data.getStringExtra("course_name");
+                    String professor = data.getStringExtra("professor");
+                    String courseType = data.getStringExtra("course_type");
+                    String subjectType = data.getStringExtra("subject_type");
+                    String lectureType = data.getStringExtra("lecture_type");
+
+                    Log.d(TAG, "FilteringActivity returned: " +
+                            department + ", " +
+                            courseName + ", " +
+                            professor + ", " +
+                            courseType + ", " +
+                            subjectType + ", " +
+                            lectureType);
+
+                    // CourseRequest 생성 및 서버 호출
+                    fetchCourses(department, courseName, professor, courseType, subjectType, lectureType);
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_search); // 레이아웃 파일 이름 변경
+        // BaseActivity의 content_frame에 activity_search.xml 주입
+        getLayoutInflater().inflate(R.layout.activity_search, findViewById(R.id.content_frame), true);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -42,24 +69,36 @@ public class SearchActivity extends BaseActivity {
         adapter = new CourseAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
+        // Search 버튼 초기화 및 클릭 리스너 설정
+        searchButton = findViewById(R.id.search_button); // 버튼 ID와 연결
+        searchButton.setOnClickListener(v -> {
+            // FilteringActivity 실행
+            Intent intent = new Intent(SearchActivity.this, FilteringActivity.class);
+            filteringActivityLauncher.launch(intent);
+        });
+
+        // 기본 데이터 가져오기
+        fetchCourses("", "", "", "", "", "");
+    }
+
+    private void fetchCourses(String department, String courseName, String professor,
+                              String courseType, String subjectType, String lectureType) {
+        if (adapter == null || recyclerView.getAdapter() == null) {
+            Log.e(TAG, "Adapter is not attached to RecyclerView.");
+            return;
+        }
+
+        adapter.updateData(new ArrayList<>());
+
         ApiService apiService = RetrofitClient.getApiService();
 
-        // CourseRequest 생성 방법 개선 (선택 사항)
-        // Map<String, String> filters = new HashMap<>();
-        // filters.put("department", "전산학부");
-        // filters.put("course_type", "학사과정");
-        // filters.put("subject_type", "전공필수");
-        // List<String> displayColumns = Arrays.asList("학과", "교과목코드", "교과목명", "담당교수", "강:실:학");
-        // CourseRequest request = new CourseRequest(filters, displayColumns);
-
-        // 현재 CourseRequest 생성 방식 유지
         CourseRequest request = new CourseRequest(
-                "전산학부",
+                department == null ? "" : department,
+                courseType == null || courseType.equals("전체") ? "" : courseType,
+                subjectType == null || subjectType.equals("전체") ? "" : subjectType,
+                courseName == null ? "" : courseName,
                 "",
-                "전공필수",
-                "",
-                "",
-                "",
+                professor == null ? "" : professor,
                 "",
                 "",
                 "",
@@ -67,7 +106,7 @@ public class SearchActivity extends BaseActivity {
                 "",
                 "",
                 null,
-                "",
+                lectureType == null || lectureType.equals("전체") ? "" : lectureType,
                 "",
                 ""
         );
@@ -89,6 +128,7 @@ public class SearchActivity extends BaseActivity {
             }
         });
     }
+
     @Override
     protected int getSelectedMenuId() {
         return R.id.navigation_search;
