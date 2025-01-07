@@ -21,18 +21,28 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_course_card" />
 
-    <!-- "filter하세요" 메시지 -->
+    <!-- Empty State 이미지 -->
+    <ImageView
+        android:id="@+id/empty_state_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/character"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Empty State 텍스트 -->
     <TextView
         android:id="@+id/empty_state_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="filter하세요"
+        android:text="필터링 하세요"
         android:textSize="18sp"
+        android:gravity="center"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/empty_state_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -45,4 +55,5 @@
         android:contentDescription="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
