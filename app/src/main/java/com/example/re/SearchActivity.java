@@ -94,8 +94,8 @@ public class SearchActivity extends BaseActivity {
 
         CourseRequest request = new CourseRequest(
                 department == null ? "" : department,
-                courseType == null || courseType.equals("전체") ? "" : courseType,
-                subjectType == null || subjectType.equals("전체") ? "" : subjectType,
+                courseType == null || courseType.equals("과정구분: 전체") ? "" : courseType,
+                subjectType == null || subjectType.equals("과목구분: 전체") ? "" : subjectType,
                 courseName == null ? "" : courseName,
                 "",
                 professor == null ? "" : professor,
@@ -106,7 +106,7 @@ public class SearchActivity extends BaseActivity {
                 "",
                 "",
                 null,
-                lectureType == null || lectureType.equals("전체") ? "" : lectureType,
+                lectureType == null || lectureType.equals("강의유형: 전체") ? "" : lectureType,
                 "",
                 ""
         );

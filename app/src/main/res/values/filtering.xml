@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="department_options">
-        <item>전체</item>
+        <item>강의유형: 전체</item>
         <item>대면</item>
         <item>(온라인)비실시간+실시간 혼합 수업</item>
         <item>(온라인)실시간 원격수업</item>
         <item>(온라인)비실시간 원격수업</item>
     </string-array>
     <string-array name="course_type_options">
-        <item>전체</item>
+        <item>과정구분: 전체</item>
         <item>학사과정</item>
         <item>석/박사과정</item>
     </string-array>
     <string-array name="subject_type_options">
-        <item>전체</item>
+        <item>과목구분: 전체</item>
         <item>전공선택</item>
         <item>기초필수</item>
         <item>졸업연구</item>
