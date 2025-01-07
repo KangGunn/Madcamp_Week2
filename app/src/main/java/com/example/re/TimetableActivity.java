@@ -16,7 +16,6 @@ public class TimetableActivity extends BaseActivity {
                 .replace(R.id.content_frame, new TimetableFragment())
                 .commit();
     }
-
     @Override
     protected int getSelectedMenuId() {
         return R.id.navigation_timetable;

@@ -7,16 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".TimetableActivity">
 
-    <!-- RecyclerView for the timetable -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/timetable_recycler_view"
+    <!-- GridLayout으로 시간표 구성 -->
+    <GridLayout
+        android:id="@+id/timetable_grid"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/table_boarder"
-        android:clipToPadding="false"
-        android:scrollbars="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:columnCount="6"
+        android:rowCount="13"
+        android:padding="8dp">
+</GridLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 1 열(시간) + 5 열(요일) -->
+    <!-- 시간대에 따라 행 -->
