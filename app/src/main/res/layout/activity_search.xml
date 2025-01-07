@@ -21,27 +21,40 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_course_card" />
 
-    <!-- "filter하세요" 메시지 -->
-    <TextView
-        android:id="@+id/empty_state_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="filter하세요"
-        android:textSize="18sp"
+    <!-- Empty State 이미지 -->
+    <ImageView
+        android:id="@+id/empty_state_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/character"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
+    <!-- Empty State 텍스트 -->
+    <TextView
+        android:id="@+id/empty_state_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="필터링 하세요"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/empty_state_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
         android:id="@+id/search_button"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="16dp"
         android:background="@drawable/circle_button_background"
+        android:src="@drawable/magnifying_glass"
+        android:scaleType="centerInside"
+        android:padding="10dp"
         android:contentDescription="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

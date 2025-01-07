@@ -3,14 +3,14 @@
     <item>
         <shape android:shape="oval">
             <solid android:color="#88CCCCCC" /> <!-- 반투명 회색 -->
-            <size
-                android:width="64dp"
-                android:height="64dp" />
         </shape>
     </item>
 
     <!-- 돋보기 이미지 -->
-    <item
-        android:drawable="@drawable/magnifying_glass"
-        android:gravity="center" />
+    <item>
+        <bitmap
+            android:src="@drawable/magnifying_glass"
+            android:gravity="center"
+            android:scaleType="fitCenter" />
+    </item>
 </layer-list>

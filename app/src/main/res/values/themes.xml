@@ -1,12 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Re" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+        <item name="bottomNavigationStyle">@style/CustomBottomNavigationView</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <!-- 팝업용 테마 -->
+    <style name="Popup.NoActionBar" parent="Theme.AppCompat.Dialog">
+        <item name="windowNoTitle">true</item> <!-- 제목 제거 -->]
+        <item name="android:windowBackground">@android:color/transparent</item> <!-- 배경을 투명으로 설정 -->
+        <item name="android:textColor">@android:color/black</item> <!-- 텍스트 색상을 검은색으로 설정 -->
+        <item name="android:spinnerStyle">@style/CustomSpinnerStyle</item> <!-- 커스텀 스피너 스타일 -->
+        <item name="android:windowCloseOnTouchOutside">true</item> <!-- 외부 클릭 시 닫힘 -->
+    </style>
 
-    <!-- PreferencesActivity 전용 테마 -->
+    <style name="CustomSpinnerStyle" parent="Widget.AppCompat.Spinner">
+        <item name="android:textColor">@android:color/black</item> <!-- 스피너 텍스트 -->
+        <item name="android:popupBackground">@android:color/white</item> <!-- 드롭다운 배경 -->
+    </style>
+
     <style name="BoldTheme" parent="Base.Theme.Re">
         <item name="android:fontFamily">@font/font_bold</item>
         <item name="android:textStyle">bold</item>
@@ -17,5 +29,17 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- 커스텀 BottomNavigationView 스타일 -->
+    <style name="CustomBottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+<!--            <item name="itemBackground">@drawable/click</item>-->
+<!--        <item name="itemActiveIndicatorWidth">80dp</item>-->
+<!--        <item name="itemActiveIndicatorHeight">40dp</item>-->
+<!--        <item name="itemActiveIndicatorShapeAppearanceOverlay">@style/CustomActiveIndicatorShape</item>-->
+    </style>
+
+    <!-- Active Indicator 모양을 변경할 스타일 -->
+    <style name="CustomActiveIndicatorShape" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">20dp</item> <!-- 타원 모양 -->
+    </style>
     <style name="Theme.Re" parent="Base.Theme.Re" />
 </resources>
