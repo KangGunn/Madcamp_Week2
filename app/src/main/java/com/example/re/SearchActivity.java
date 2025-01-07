@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +24,7 @@ import retrofit2.Response;
 public class SearchActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private CourseAdapter adapter;
-    private Button searchButton;
+    private ImageButton searchButton;
     private TextView emptyStateText;
     private ImageView emptyStateImage;
     private final String TAG = "SearchActivity";
