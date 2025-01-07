@@ -2,6 +2,7 @@ package com.example.re;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,10 +37,14 @@ public class FilteringActivity extends AppCompatActivity {
         setupSpinner(lectureTypeFilter, R.array.department_options);
 
         // Button
-       applyFilterButton = findViewById(R.id.apply_filter_button);
+        applyFilterButton = findViewById(R.id.apply_filter_button);
 
         // 필터 적용 버튼 클릭 시 데이터 반환
-        applyFilterButton.setOnClickListener(v -> {
+        applyFilterButton.setOnClickListener(v -> returnFilteredData());
+    }
+        // 필터 적용 버튼 클릭 시 데이터 반환
+        private void returnFilteredData() {
+            // 사용자가 입력한 데이터를 반환
             Intent resultIntent = new Intent();
             resultIntent.putExtra("department", departmentFilter.getText().toString());
             resultIntent.putExtra("course_name", courseNameFilter.getText().toString());
@@ -50,12 +55,13 @@ public class FilteringActivity extends AppCompatActivity {
 
             setResult(RESULT_OK, resultIntent); // 결과 반환
             finish(); // FilteringActivity 종료
-        });
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
+        Log.d("FilteringActivity", "onDestroy called, returning default values");
         // FilteringActivity 종료 시 기본값으로 데이터를 반환
         Intent resultIntent = new Intent();
         resultIntent.putExtra("department", "");

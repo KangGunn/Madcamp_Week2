@@ -124,11 +124,10 @@
 
             <ImageButton
                 android:id="@+id/btn_add_mandatory_course"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
                 android:layout_marginStart="8dp"
-                android:src="@drawable/ic_launcher_foreground"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                android:background="@drawable/prefer_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:contentDescription="과목 추가" />
         </LinearLayout>
 
@@ -166,12 +165,11 @@
 
             <ImageButton
                 android:id="@+id/btn_add_disliked_course"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
                 android:layout_marginStart="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="과목 추가"
-                android:src="@drawable/character" />
+                android:background="@drawable/prefer_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="과목 추가"/>
         </LinearLayout>
 
         <com.google.android.material.chip.ChipGroup
@@ -260,12 +258,11 @@
 
             <ImageButton
                 android:id="@+id/btn_add_major_course"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
                 android:layout_marginStart="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="전공 과목 추가"
-                android:src="@drawable/character" />
+                android:background="@drawable/prefer_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="전공 과목 추가" />
         </LinearLayout>
 
         <com.google.android.material.chip.ChipGroup

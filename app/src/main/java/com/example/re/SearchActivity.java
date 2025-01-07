@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +35,32 @@ public class SearchActivity extends BaseActivity {
     private String subjectType = "과목구분: 전체";
     private String lectureType = "강의유형: 전체";
 
+    private final ActivityResultLauncher<Intent> filteringActivityLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    // FilteringActivity에서 전달된 데이터 가져오기
+                    Intent data = result.getData();
+                    department = data.getStringExtra("department");
+                    courseName = data.getStringExtra("course_name");
+                    professor = data.getStringExtra("professor");
+                    courseType = data.getStringExtra("course_type");
+                    subjectType = data.getStringExtra("subject_type");
+                    lectureType = data.getStringExtra("lecture_type");
+
+                    Log.d(TAG, "Filter values received: " +
+                            "department=" + department + ", " +
+                            "courseName=" + courseName + ", " +
+                            "professor=" + professor + ", " +
+                            "courseType=" + courseType + ", " +
+                            "subjectType=" + subjectType + ", " +
+                            "lectureType=" + lectureType);
+                    if (isFilterEmpty()) {
+                        showEmptyState();
+                    } else {
+                        fetchCourses();
+                    }
+                }
+            });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +87,8 @@ public class SearchActivity extends BaseActivity {
 
     private void showFilteringPopup() {
         Intent intent = new Intent(SearchActivity.this, FilteringActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK); // 팝업 스타일 적용
-        startActivity(intent);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK); // 팝업 스타일 적용
+        filteringActivityLauncher.launch(intent);
     }
 
     private boolean isFilterEmpty() {
