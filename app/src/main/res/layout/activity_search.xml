@@ -24,8 +24,8 @@
     <!-- Empty State 이미지 -->
     <ImageView
         android:id="@+id/empty_state_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/character"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
