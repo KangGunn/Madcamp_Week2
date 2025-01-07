@@ -300,9 +300,11 @@ public class PreferencesActivity extends BaseActivity {
             public void onResponse(Call<PreferencesResponse> call, Response<PreferencesResponse> response) {
                 if (response.isSuccessful()) {
                     PreferencesResponse preferencesResponse = response.body();
-                    if (preferencesResponse != null) {
-                        List<String> candidateTimetables = preferencesResponse.getCandidateTimetables();
-                        displayCandidateTimetables(candidateTimetables);
+                    if (preferencesResponse != null && preferencesResponse.getCandidateTimetables() != null) {
+                        List<PreferencesResponse.Timetable> timetables = preferencesResponse.getCandidateTimetables();
+                        displayCandidateTimetables(timetables);
+                    } else {
+                        Toast.makeText(PreferencesActivity.this, "다시 제출해주세요.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(PreferencesActivity.this, "제출 실패: " + response.message(), Toast.LENGTH_SHORT).show();
@@ -324,7 +326,7 @@ public class PreferencesActivity extends BaseActivity {
      *
      * @param candidateTimetables 후보 시간표 리스트
      */
-    private void displayCandidateTimetables(List<String> candidateTimetables) {
+    private void displayCandidateTimetables(List<PreferencesResponse.Timetable> candidateTimetables) {
         if (candidateTimetables == null || candidateTimetables.isEmpty()) {
             Toast.makeText(this, "후보 시간표가 없습니다.", Toast.LENGTH_SHORT).show();
             return;
