@@ -61,7 +61,9 @@
         android:id="@+id/navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="65dp"
+        android:background="@color/blue"
+        app:itemActiveIndicatorStyle="@style/CustomBottomNavigationView"
         app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/blue" />
+        app:layout_constraintTop_toBottomOf="@id/content_frame" />
 </androidx.constraintlayout.widget.ConstraintLayout>
