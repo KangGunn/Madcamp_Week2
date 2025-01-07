@@ -5,5 +5,17 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+
+    <!-- PreferencesActivity 전용 테마 -->
+    <style name="BoldTheme" parent="Base.Theme.Re">
+        <item name="android:fontFamily">@font/font_bold</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="regularTheme" parent="Base.Theme.Re">
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Theme.Re" parent="Base.Theme.Re" />
 </resources>

@@ -1,4 +1,6 @@
 <resources>
-    <string name="app_name">Re</string>
+    <string name="app_name">마이시간표</string>
     <string name="default_web_client_id">850782372613-0h808352ejjidid2delrb8vj2dtf6q1j.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -8,14 +8,16 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TimetableActivity extends AppCompatActivity {
+public class TimetableActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private TimetableAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timetable);
+
+        // content_frame에 Timetable 레이아웃 로드
+        getLayoutInflater().inflate(R.layout.activity_timetable, findViewById(R.id.content_frame), true);
 
         recyclerView = findViewById(R.id.timetable_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -27,7 +29,10 @@ public class TimetableActivity extends AppCompatActivity {
         adapter = new TimetableAdapter(timetableData);
         recyclerView.setAdapter(adapter);
     }
-
+    @Override
+    protected int getSelectedMenuId() {
+        return R.id.navigation_timetable;
+    }
     private List<TimetableRow> createTimetableData() {
         List<TimetableRow> timetableData = new ArrayList<>();
 
