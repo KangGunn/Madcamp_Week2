@@ -181,55 +181,12 @@
             android:singleLine="false"
             android:orientation="horizontal" />
 
-        <!-- 4. 희망 학점 범위 섹션 -->
-        <TextView
-            android:id="@+id/tv_credit_range"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4. 희망 학점 범위"
-            android:textSize="18sp"
-            style="@style/BoldTheme"
-            android:paddingTop="16dp"
-            android:paddingBottom="4dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
-
-            <EditText
-                android:id="@+id/et_min_credits"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="최소 학점"
-                android:inputType="number" />
-
-            <TextView
-                android:id="@+id/tv_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="~"
-                android:gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp" />
-
-            <EditText
-                android:id="@+id/et_max_credits"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="최대 학점"
-                android:inputType="number" />
-        </LinearLayout>
-
         <!-- 5. 전공 및 교양 과목 개수 섹션 -->
         <TextView
             android:id="@+id/tv_major_general_courses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5. 전공 과목 개수"
+            android:text="4. 전공 과목 개수"
             android:textSize="18sp"
             style="@style/BoldTheme"
             android:paddingTop="8dp"
@@ -280,7 +237,7 @@
             android:id="@+id/tv_general_courses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6. 교양 과목 개수"
+            android:text="5. 교양 과목 개수"
             android:textSize="18sp"
             style="@style/BoldTheme"
             android:paddingTop="16dp"

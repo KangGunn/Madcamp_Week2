@@ -33,7 +33,6 @@ public class PreferencesActivity extends BaseActivity {
     private EditText etDislikedCourseInput;
     private ImageButton btnAddDislikedCourse;
 
-    private EditText etMinCredits, etMaxCredits;
     private EditText etMajorCourseInput, etMajorCourseCount;
     private ImageButton btnAddMajorCourse;
     private EditText etGeneralCourses;
@@ -63,8 +62,6 @@ public class PreferencesActivity extends BaseActivity {
         etDislikedCourseInput = findViewById(R.id.et_disliked_course_input);
         btnAddDislikedCourse = findViewById(R.id.btn_add_disliked_course);
 
-        etMinCredits = findViewById(R.id.et_min_credits);
-        etMaxCredits = findViewById(R.id.et_max_credits);
         etMajorCourseInput = findViewById(R.id.et_major_course_input);
         etMajorCourseCount = findViewById(R.id.et_major_course_count);
         btnAddMajorCourse = findViewById(R.id.btn_add_major_course);
@@ -242,31 +239,8 @@ public class PreferencesActivity extends BaseActivity {
         }
 
         // 4. 희망 학점 범위 수집
-        String minCreditsStr = etMinCredits.getText().toString().trim();
-        String maxCreditsStr = etMaxCredits.getText().toString().trim();
-
-        if (TextUtils.isEmpty(minCreditsStr) || TextUtils.isEmpty(maxCreditsStr)) {
-            Toast.makeText(this, "희망 학점 범위를 모두 입력하세요.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        int minCredits, maxCredits;
-        try {
-            minCredits = Integer.parseInt(minCreditsStr);
-            maxCredits = Integer.parseInt(maxCreditsStr);
-            if (minCredits <= 0 || maxCredits <= 0) {
-                Toast.makeText(this, "학점은 1 이상이어야 합니다.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "학점은 숫자여야 합니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (minCredits > maxCredits) {
-            Toast.makeText(this, "최소 학점은 최대 학점보다 작거나 같아야 합니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        int minCredits = 0;
+        int maxCredits = 0;
 
         // 5. 전공 과목 수집
         List<MajorCourse> majorCourses = new ArrayList<>();
