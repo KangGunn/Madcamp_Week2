@@ -36,27 +36,6 @@ public class SearchActivity extends BaseActivity {
     private String subjectType = "과목구분: 전체";
     private String lectureType = "강의유형: 전체";
 
-    private final ActivityResultLauncher<Intent> filteringActivityLauncher =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    // FilteringActivity에서 전달된 데이터 가져오기
-                    Intent data = result.getData();
-                    department = data.getStringExtra("department");
-                    courseName = data.getStringExtra("course_name");
-                    professor = data.getStringExtra("professor");
-                    courseType = data.getStringExtra("course_type");
-                    subjectType = data.getStringExtra("subject_type");
-                    lectureType = data.getStringExtra("lecture_type");
-
-                    // 조건 확인 및 UI 업데이트
-                    if (isFilterEmpty()) {
-                        showEmptyState();
-                    } else {
-                        fetchCourses(department, courseName, professor, courseType, subjectType, lectureType);
-                    }
-                }
-            });
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,17 +51,19 @@ public class SearchActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
 
         searchButton = findViewById(R.id.search_button);
-        searchButton.setOnClickListener(v -> {
-            Intent intent = new Intent(SearchActivity.this, FilteringActivity.class);
-            filteringActivityLauncher.launch(intent);
-        });
-
+        searchButton.setOnClickListener(v -> showFilteringPopup());
         // 초기화: 기본 조건 확인
         if (isFilterEmpty()) {
             showEmptyState();
         } else {
-            fetchCourses(department, courseName, professor, courseType, subjectType, lectureType);
+            fetchCourses();
         }
+    }
+
+    private void showFilteringPopup() {
+        Intent intent = new Intent(SearchActivity.this, FilteringActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK); // 팝업 스타일 적용
+        startActivity(intent);
     }
 
     private boolean isFilterEmpty() {
@@ -109,10 +90,8 @@ public class SearchActivity extends BaseActivity {
         emptyStateImage.setVisibility(View.GONE);
     }
 
-    private void fetchCourses(String department, String courseName, String professor,
-                              String courseType, String subjectType, String lectureType) {
+    private void fetchCourses() {
         if (adapter == null || recyclerView.getAdapter() == null) {
-            Log.e(TAG, "Adapter is not attached to RecyclerView.");
             return;
         }
 

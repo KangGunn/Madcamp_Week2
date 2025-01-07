@@ -5,6 +5,20 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <!-- 팝업용 테마 -->
+    <style name="Popup.NoActionBar" parent="Theme.AppCompat.Dialog">
+        <item name="windowNoTitle">true</item> <!-- 제목 제거 -->]
+        <item name="android:windowBackground">@android:color/transparent</item> <!-- 배경을 투명으로 설정 -->
+        <item name="android:textColor">@android:color/black</item> <!-- 텍스트 색상을 검은색으로 설정 -->
+        <item name="android:spinnerStyle">@style/CustomSpinnerStyle</item> <!-- 커스텀 스피너 스타일 -->
+        <item name="android:windowCloseOnTouchOutside">true</item> <!-- 외부 클릭 시 닫힘 -->
+    </style>
+
+    <style name="CustomSpinnerStyle" parent="Widget.AppCompat.Spinner">
+        <item name="android:textColor">@android:color/black</item> <!-- 스피너 텍스트 -->
+        <item name="android:popupBackground">@android:color/white</item> <!-- 드롭다운 배경 -->
+    </style>
+
     <style name="BoldTheme" parent="Base.Theme.Re">
         <item name="android:fontFamily">@font/font_bold</item>
         <item name="android:textStyle">bold</item>

@@ -52,6 +52,21 @@ public class FilteringActivity extends AppCompatActivity {
             finish(); // FilteringActivity 종료
         });
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // FilteringActivity 종료 시 기본값으로 데이터를 반환
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("department", "");
+        resultIntent.putExtra("course_name", "");
+        resultIntent.putExtra("professor", "");
+        resultIntent.putExtra("course_type", "과정구분: 전체");
+        resultIntent.putExtra("subject_type", "과목구분: 전체");
+        resultIntent.putExtra("lecture_type", "강의유형: 전체");
+        setResult(RESULT_OK, resultIntent);
+    }
+
     // Spinner에 데이터를 설정하는 메서드
     private void setupSpinner(Spinner spinner, int arrayResource) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(

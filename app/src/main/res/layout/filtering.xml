@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/white">
+    android:padding="16dp">
 
     <!-- 필터 영역을 포함하는 CardView -->
     <androidx.cardview.widget.CardView
@@ -35,6 +34,7 @@
                 android:layout_marginBottom="8dp"
                 android:hint="개설학과: 전체"
                 android:inputType="text"
+                android:textColor="@android:color/black"
                 android:textColorHint="@color/black" />
 
             <!-- 교과목명 -->
@@ -45,6 +45,7 @@
                 android:layout_marginBottom="8dp"
                 android:hint="교과목명: 전체"
                 android:inputType="text"
+                android:textColor="@android:color/black"
                 android:textColorHint="@color/black" />
 
             <!-- 담당교수 -->
@@ -55,6 +56,7 @@
                 android:layout_marginBottom="8dp"
                 android:hint="담당교수: 전체"
                 android:inputType="text"
+                android:textColor="@android:color/black"
                 android:textColorHint="@color/black" />
 
             <!-- 과정구분 -->
