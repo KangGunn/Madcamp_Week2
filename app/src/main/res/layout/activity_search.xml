@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="우측 하단의 필터를 설정해주세요."
         android:textSize="18sp"
-        android:gravity="center"ㅅ
+        android:gravity="center"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/empty_state_image"
         app:layout_constraintStart_toStartOf="parent"
