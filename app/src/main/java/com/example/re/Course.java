@@ -1,16 +1,22 @@
 package com.example.re;
 
-public class Course {
-    private final String courseName;
-    private final String section;
-    private final String time;
-    private final String location;
+import com.google.gson.annotations.SerializedName;
 
-    public Course(String courseName, String section, String time, String location) {
+public class Course {
+    @SerializedName("course_name")
+    private final String courseName;
+    @SerializedName("section")
+    private final String section;
+    @SerializedName("lecture_time")
+    private final String lectureTime;
+    @SerializedName("lecture_room")
+    private final String lectureRoom;
+
+    public Course(String courseName, String section, String lectureTime, String lectureRoom) {
         this.courseName = courseName;
         this.section = section;
-        this.time = time;
-        this.location = location;
+        this.lectureTime = lectureTime;
+        this.lectureRoom = lectureRoom;
     }
 
     public String getCourseName() {
@@ -22,10 +28,19 @@ public class Course {
     }
 
     public String getTime() {
-        return time;
+        return lectureTime;
     }
 
     public String getLocation() {
-        return location;
+        return lectureRoom;
+    }
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseName='" + courseName + '\'' +
+                ", section='" + section + '\'' +
+                ", time='" + lectureTime + '\'' +
+                ", location='" + lectureRoom + '\'' +
+                '}';
     }
 }

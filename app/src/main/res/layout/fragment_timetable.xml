@@ -19,3 +19,12 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- 1 열: 시간, 5 열: 요일 -->
     <!-- 시간 슬롯 개수 (8교시 + 헤더) -->
+
+
+<!--<GridLayout-->
+<!--android:id="@+id/timetable_grid"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:columnCount="2"-->
+<!--android:rowCount="auto"-->
+<!--android:padding="8dp" />-->

@@ -3,16 +3,20 @@ package com.example.re;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -293,30 +297,45 @@ public class PreferencesActivity extends BaseActivity {
                 majorCourses,
                 generalCourses
         );
+        // 요청 메시지 로그 출력
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(preferencesRequest);
+        Log.d("DEBUG", "전송된 요청 메시지: " + requestJson);
+
 
         Call<PreferencesResponse> call = apiService.submitPreferences(preferencesRequest);
         call.enqueue(new Callback<PreferencesResponse>() {
             @Override
             public void onResponse(Call<PreferencesResponse> call, Response<PreferencesResponse> response) {
-                if (response.isSuccessful()) {
-                    PreferencesResponse preferencesResponse = response.body();
-                    if (preferencesResponse != null && preferencesResponse.getCandidateTimetables() != null) {
-                        List<PreferencesResponse.Timetable> timetables = preferencesResponse.getCandidateTimetables();
-                        displayCandidateTimetables(timetables);
+                if (response.isSuccessful() && response.body() != null) {
+                    Gson gson = new Gson();
+                    String jsonResponse = gson.toJson(response.body());
+                    Log.d("DEBUG", "서버 응답 성공: " + jsonResponse);
+                    List<PreferencesResponse.Timetable> timetables = response.body().getCandidateTimetables();
+                    if (timetables != null && !timetables.isEmpty()) {
+                        Log.d("DEBUG", "받은 시간표 개수: " + timetables.size());
+                        for (PreferencesResponse.Timetable timetable : timetables) {
+                            Log.d("DEBUG", "Timetable: " + timetable);
+                            for (PreferencesResponse.Timetable.Course course : timetable.getCourses()) {
+                                Log.d("DEBUG", "과목명: " + course.getCourse_name() +
+                                        ", 시간: " + course.getLecture_time() +
+                                        ", 강의실: " + course.getLecture_room() +
+                                        ", 분반: " + course.getSection());
+                            }
+                        }
+                        displayCandidateTimetablesPopup(timetables);
                     } else {
-                        Toast.makeText(PreferencesActivity.this, "다시 제출해주세요.", Toast.LENGTH_SHORT).show();
+                        Log.e("DEBUG", "후보 시간표가 비어 있음");
                     }
                 } else {
-                    Toast.makeText(PreferencesActivity.this, "제출 실패: " + response.message(), Toast.LENGTH_SHORT).show();
-                    Log.e("Preferences", "Server response code: " + response.code());
-                    Log.e("Preferences", "Server response message: " + response.message());
+                    Log.e("DEBUG", "서버 응답 실패: " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<PreferencesResponse> call, Throwable t) {
-                Toast.makeText(PreferencesActivity.this, "서버와 연결할 수 없습니다.", Toast.LENGTH_SHORT).show();
-                Log.e("Preferences", "Error: " + t.getMessage());
+                Log.e("DEBUG", "onFailure 호출됨: " + t.getMessage());
+                Toast.makeText(PreferencesActivity.this, "서버 연결 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -326,6 +345,25 @@ public class PreferencesActivity extends BaseActivity {
      *
      * @param candidateTimetables 후보 시간표 리스트
      */
+
+    private void displayCandidateTimetablesPopup(List<PreferencesResponse.Timetable> candidateTimetables) {
+        View popupView = LayoutInflater.from(this).inflate(R.layout.dialog_multiple_timetables, null);
+        RecyclerView recyclerView = popupView.findViewById(R.id.recycler_view_timetables);
+
+        // RecyclerView 설정
+        CandidateTimetableAdapter adapter = new CandidateTimetableAdapter(this, candidateTimetables);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(adapter);
+
+        // 다이얼로그 생성 및 표시
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(popupView)
+                .setTitle("후보 시간표")
+                .setPositiveButton("닫기", null)
+                .create();
+        dialog.show();
+    }
+
     private void displayCandidateTimetables(List<PreferencesResponse.Timetable> candidateTimetables) {
         if (candidateTimetables == null || candidateTimetables.isEmpty()) {
             Toast.makeText(this, "후보 시간표가 없습니다.", Toast.LENGTH_SHORT).show();
@@ -340,6 +378,7 @@ public class PreferencesActivity extends BaseActivity {
         // 실제 앱에서는 RecyclerView 등을 사용하여 사용자에게 시간표를 표시할 수 있습니다.
         Toast.makeText(this, "후보 시간표 " + candidateTimetables.size() + "개를 받았습니다.", Toast.LENGTH_LONG).show();
     }
+
 
     /**
      * 전공 과목 정보를 담는 클래스
