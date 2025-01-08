@@ -361,6 +361,18 @@ public class PreferencesActivity extends BaseActivity {
                 .setTitle("후보 시간표")
                 .setPositiveButton("닫기", null)
                 .create();
+
+        // 다이얼로그 크기 설정
+        dialog.setOnShowListener(dialogInterface -> {
+            // Window 속성 가져오기
+            if (dialog.getWindow() != null) {
+                dialog.getWindow().setLayout(
+                        (int) (getResources().getDisplayMetrics().widthPixels * 0.99),  // 화면 너비의 90%
+                        (int) (getResources().getDisplayMetrics().heightPixels * 0.99) // 화면 높이의 80%
+                );
+            }
+        });
+
         dialog.show();
     }
 
