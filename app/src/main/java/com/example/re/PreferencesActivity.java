@@ -1,10 +1,12 @@
 package com.example.re;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -352,45 +354,29 @@ public class PreferencesActivity extends BaseActivity {
 
         // RecyclerView 설정
         CandidateTimetableAdapter adapter = new CandidateTimetableAdapter(this, candidateTimetables);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 
-        // 다이얼로그 생성 및 표시
+        // LinearLayoutManager를 가로 방향으로 설정
+       // LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        //recyclerView.setLayoutManager(layoutManager);
+        //recyclerView.setAdapter(adapter);
+
+        // AlertDialog 생성 및 크기 조정
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(popupView)
                 .setTitle("후보 시간표")
                 .setPositiveButton("닫기", null)
                 .create();
 
-        // 다이얼로그 크기 설정
-        dialog.setOnShowListener(dialogInterface -> {
-            // Window 속성 가져오기
-            if (dialog.getWindow() != null) {
-                dialog.getWindow().setLayout(
-                        (int) (getResources().getDisplayMetrics().widthPixels * 0.99),  // 화면 너비의 90%
-                        (int) (getResources().getDisplayMetrics().heightPixels * 0.99) // 화면 높이의 80%
-                );
-            }
-        });
-
         dialog.show();
+
+        // 다이얼로그 크기 조정
+        WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setAttributes(params);
     }
-
-    private void displayCandidateTimetables(List<PreferencesResponse.Timetable> candidateTimetables) {
-        if (candidateTimetables == null || candidateTimetables.isEmpty()) {
-            Toast.makeText(this, "후보 시간표가 없습니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // 예시: 후보 시간표를 로그에 출력하고, Toast로 첫 번째 시간표를 표시
-        for (int i = 0; i < candidateTimetables.size(); i++) {
-            Log.d("Preferences", "후보 시간표 " + (i + 1) + ": " + candidateTimetables.get(i));
-        }
-
-        // 실제 앱에서는 RecyclerView 등을 사용하여 사용자에게 시간표를 표시할 수 있습니다.
-        Toast.makeText(this, "후보 시간표 " + candidateTimetables.size() + "개를 받았습니다.", Toast.LENGTH_LONG).show();
-    }
-
 
     /**
      * 전공 과목 정보를 담는 클래스
