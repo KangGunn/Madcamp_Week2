@@ -65,7 +65,7 @@
         android:id="@+id/login_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="로그인"
         android:backgroundTint="@color/blue"
         android:textColor="@color/white"
         android:textSize="16sp"
