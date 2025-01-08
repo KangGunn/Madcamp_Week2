@@ -7,16 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".TimetableFragment">
 
-    <!-- GridLayout을 시간표에 사용 -->
-    <GridLayout
-        android:id="@+id/timetable_grid"
+    <!-- ScrollView와 HorizontalScrollView를 감싸서 스크롤 가능하게 만듦 -->
+    <HorizontalScrollView
+        android:id="@+id/scroll_view_timetable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnCount="6"
-        android:padding="8dp"
-        android:rowCount="13">
-    </GridLayout>
+        android:fillViewport="true"
+        android:scrollbars="horizontal">
+
+        <ScrollView
+            android:id="@+id/vertical_scroll_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <!-- GridLayout을 시간표에 사용 -->
+            <GridLayout
+                android:id="@+id/timetable_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="6"
+                android:padding="8dp"
+                android:rowCount="13">
+            </GridLayout>
+        </ScrollView>
+    </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!-- 1 열: 시간, 5 열: 요일 -->
     <!-- 시간 슬롯 개수 (8교시 + 헤더) -->
 

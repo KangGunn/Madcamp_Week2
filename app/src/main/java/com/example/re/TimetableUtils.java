@@ -1,6 +1,7 @@
 package com.example.re;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.GridLayout;
@@ -19,10 +20,6 @@ public class TimetableUtils {
     };
     private static final Map<String, Integer> courseColorMap = new HashMap<>();
     private static int colorIndex = 0;
-
-    /**
-     * 과목별 고유 색상을 반환합니다.
-     */
     private static int getColorForCourse(Context context, String courseName) {
         if (!courseColorMap.containsKey(courseName)) {
             int color = ContextCompat.getColor(context, colors[colorIndex]);
@@ -30,81 +27,118 @@ public class TimetableUtils {
             colorIndex = (colorIndex + 1) % colors.length; // 색상 순환
         }
         return courseColorMap.get(courseName);
-    }
+    } //색상 순환
 
     /**
      * 시간표 데이터를 GridLayout에 표시합니다.
      */
     public static void populateTimetable(GridLayout timetableGrid, PreferencesResponse.Timetable timetable, Context context) {
-        timetableGrid.removeAllViews(); // 기존 데이터 초기화
-        Log.d("DEBUG", "GridLayout 초기화 완료. 과목 개수: " + timetable.getCourses().size());
+        timetableGrid.removeAllViews();
+        Log.d("DEBUG", "populateTimetable 호출됨. 과목 수: " + timetable.getCourses().size());
+
+        // 요일 헤더와 시간 헤더 추가
+        addDayHeaders(timetableGrid, context);
+        addTimeHeaders(timetableGrid, context);
 
         for (PreferencesResponse.Timetable.Course course : timetable.getCourses()) {
-            // 강의 시간 데이터를 \n으로 분리
             String[] lectureTimes = course.getLecture_time().split("\n");
             for (String lecture : lectureTimes) {
-                // 요일과 시간 분리 ("월 10:30~12:00" -> ["월", "10:30~12:00"])
                 String[] parts = lecture.split(" ");
-                if (parts.length != 2) {
-                    Log.e("DEBUG", "잘못된 강의 시간 데이터: " + lecture);
-                continue; // 잘못된 데이터 건너뛰기
-                }
+                if (parts.length != 2) continue;
 
                 String day = parts[0];
                 String timeRange = parts[1];
+                int column = getColumnForDay(day);
+                int row = getRowForTime(timeRange);
 
-                int column = getColumnForDay(day); // 요일에 따른 열 계산
-                int row = getRowForTime(timeRange); // 시간 범위에 따른 행 계산
+                if (column == -1 || row == -1) continue;
 
-                Log.d("DEBUG", "강의 데이터 처리: day=" + day + ", timeRange=" + timeRange +
-                        ", column=" + column + ", row=" + row);
-
-                if (column == -1 || row == -1) {
-                    Log.d("DEBUG", "시간 좌표 계산 실패: day=" + day + ", timeRange=" + timeRange);
-                    continue; // 좌표 계산 실패 시 건너뛰기
-                }
-
-                // GridLayout에 과목 추가
                 addCourseToGrid(timetableGrid, course, column, row, context);
             }
         }
-        Log.d("DEBUG", "GridLayout 데이터 추가 완료.");
     }
+
 
 
     /**
      * GridLayout에 과목 데이터를 추가합니다.
      */
+
+    private static void addDayHeaders(GridLayout timetableGrid, Context context) {
+        String[] days = {"월", "화", "수", "목", "금"};
+        for (int i = 0; i < days.length; i++) {
+            TextView dayHeader = new TextView(context);
+            dayHeader.setText(days[i]);
+            dayHeader.setGravity(Gravity.CENTER);
+            dayHeader.setBackgroundColor(ContextCompat.getColor(context, R.color.darker_gray));
+            dayHeader.setTextColor(ContextCompat.getColor(context, android.R.color.white));
+            dayHeader.setPadding(8, 8, 8, 8);
+
+            GridLayout.LayoutParams params = new GridLayout.LayoutParams(
+                    GridLayout.spec(0, 1),
+                    GridLayout.spec(i + 1, 1)
+            );
+            params.width = 200; // 고정된 가로 길이
+            params.height = 100; // 고정된 세로 길이
+            params.setMargins(4, 4, 4, 4);
+            dayHeader.setLayoutParams(params);
+
+            timetableGrid.addView(dayHeader);
+        }
+    }
+
+    private static void addTimeHeaders(GridLayout timetableGrid, Context context) {
+        String[] times = {"09:00~10:30", "10:30~12:00", "12:00~13:00", "13:00~14:30",
+                "14:30~16:00", "16:00~17:30", "17:30~19:00", "19:00~20:30",
+                "20:30~22:00", "22:00~23:30"};
+        for (int i = 0; i < times.length; i++) {
+            TextView timeHeader = new TextView(context);
+            timeHeader.setText(times[i]);
+            timeHeader.setGravity(Gravity.CENTER);
+            timeHeader.setBackgroundColor(ContextCompat.getColor(context, R.color.darker_gray));
+            timeHeader.setTextColor(ContextCompat.getColor(context, android.R.color.white));
+            timeHeader.setPadding(8, 8, 8, 8);
+
+            GridLayout.LayoutParams params = new GridLayout.LayoutParams(
+                    GridLayout.spec(i + 1, 1),
+                    GridLayout.spec(0, 1)
+            );
+            params.width = 260; // 고정된 가로 길이
+            params.height = 100; // 고정된 세로 길이
+            params.setMargins(4, 4, 4, 4);
+            timeHeader.setLayoutParams(params);
+
+            timetableGrid.addView(timeHeader);
+        }
+    }
+
     private static void addCourseToGrid(GridLayout timetableGrid, PreferencesResponse.Timetable.Course course,
                                         int column, int row, Context context) {
-
-        // 과목 색상 설정
         int color = getColorForCourse(context, course.getCourse_name());
+        String lectureRoom = course.getLecture_room() != null ? course.getLecture_room() : "강의실 미정";
 
-        // TextView 생성 및 스타일 설정
         TextView courseCell = new TextView(context);
-        courseCell.setText(course.getCourse_name() + "\n" + course.getLecture_room());
+        courseCell.setText(course.getCourse_name() + "\n" + lectureRoom);
         courseCell.setGravity(Gravity.CENTER);
         courseCell.setTextSize(12);
         courseCell.setTextColor(ContextCompat.getColor(context, android.R.color.white));
         courseCell.setBackgroundColor(color);
+        courseCell.setPadding(8, 8, 8, 8);
+        courseCell.setSingleLine(false);
+        courseCell.setEllipsize(TextUtils.TruncateAt.END);
+        courseCell.setMaxLines(2);
 
-        // LayoutParams 설정
         GridLayout.LayoutParams params = new GridLayout.LayoutParams(
-                GridLayout.spec(row, 1), // 해당 시간 범위에 대한 행
-                GridLayout.spec(column, 1) // 해당 요일에 대한 열
+                GridLayout.spec(row, 1),
+                GridLayout.spec(column, 1)
         );
-        params.setMargins(4, 4, 4, 4); // 여백 설정
+        params.width = 200; // 고정된 가로 길이
+        params.height = 100; // 고정된 세로 길이
+        params.setMargins(4, 4, 4, 4);
         courseCell.setLayoutParams(params);
 
-        // 로그: GridLayout에 추가 전
-        Log.d("DEBUG", "GridLayout에 추가: 과목명=" + course.getCourse_name() +
-                ", 위치(row=" + row + ", column=" + column + ")");
-
-        // GridLayout에 추가
         timetableGrid.addView(courseCell);
     }
-
     /**
      * 요일에 따라 열(column)을 반환합니다.
      */
